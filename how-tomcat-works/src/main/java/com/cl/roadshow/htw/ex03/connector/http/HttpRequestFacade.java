@@ -1,5 +1,10 @@
 package com.cl.roadshow.htw.ex03.connector.http;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletInputStream;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -8,251 +13,245 @@ import java.util.Enumeration;
 import java.util.Locale;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.Cookie;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletInputStream;
-
 public class HttpRequestFacade implements HttpServletRequest {
 
-  private HttpServletRequest request;
+    private final HttpServletRequest request;
 
-  public HttpRequestFacade(HttpRequest request) {
-    this.request = request;
-  }
+    public HttpRequestFacade(HttpRequest request) {
+        this.request = request;
+    }
 
-  /* implementation of the HttpServletRequest*/
-  public Object getAttribute(String name) {
-    return request.getAttribute(name);
-  }
+    /* implementation of the HttpServletRequest*/
+    public Object getAttribute(String name) {
+        return request.getAttribute(name);
+    }
 
-  public Enumeration getAttributeNames() {
-    return request.getAttributeNames();
-  }
+    public Enumeration getAttributeNames() {
+        return request.getAttributeNames();
+    }
 
-  public String getAuthType() {
-    return request.getAuthType();
-  }
+    public String getAuthType() {
+        return request.getAuthType();
+    }
 
-  public String getCharacterEncoding() {
-    return request.getCharacterEncoding();
-  }
+    public String getCharacterEncoding() {
+        return request.getCharacterEncoding();
+    }
 
-  public int getContentLength() {
-    return request.getContentLength();
-  }
+    public void setCharacterEncoding(String encoding) throws UnsupportedEncodingException {
+        request.setCharacterEncoding(encoding);
+    }
 
-  public String getContentType() {
-    return request.getContentType();
-  }
+    public int getContentLength() {
+        return request.getContentLength();
+    }
 
-  public String getContextPath() {
-    return request.getContextPath();
-  }
+    public String getContentType() {
+        return request.getContentType();
+    }
 
-  public Cookie[] getCookies() {
-    return request.getCookies();
-  }
+    public String getContextPath() {
+        return request.getContextPath();
+    }
 
-  public long getDateHeader(String name) {
-    return request.getDateHeader(name);
-  }
+    public Cookie[] getCookies() {
+        return request.getCookies();
+    }
 
-  public Enumeration getHeaderNames() {
-    return request.getHeaderNames();
-  }
+    public long getDateHeader(String name) {
+        return request.getDateHeader(name);
+    }
 
-  public String getHeader(String name) {
-    return request.getHeader(name);
-  }
+    public Enumeration getHeaderNames() {
+        return request.getHeaderNames();
+    }
 
-  public Enumeration getHeaders(String name) {
-    return request.getHeaders(name);
-  }
+    public String getHeader(String name) {
+        return request.getHeader(name);
+    }
 
-  public ServletInputStream getInputStream() throws IOException {
-    return request.getInputStream();
-  }
+    public Enumeration getHeaders(String name) {
+        return request.getHeaders(name);
+    }
 
-  public int getIntHeader(String name) {
-    return request.getIntHeader(name);
-  }
+    public ServletInputStream getInputStream() throws IOException {
+        return request.getInputStream();
+    }
 
-  public Locale getLocale() {
-    return request.getLocale();
-  }
+    public int getIntHeader(String name) {
+        return request.getIntHeader(name);
+    }
 
-  public Enumeration getLocales() {
-    return request.getLocales();
-  }
+    public Locale getLocale() {
+        return request.getLocale();
+    }
 
-  public String getMethod() {
-    return request.getMethod();
-  }
+    public Enumeration getLocales() {
+        return request.getLocales();
+    }
 
-  public String getParameter(String name) {
-    return request.getParameter(name);
-  }
+    public String getMethod() {
+        return request.getMethod();
+    }
 
-  public Map getParameterMap() {
-    return request.getParameterMap();
-  }
+    public String getParameter(String name) {
+        return request.getParameter(name);
+    }
 
-  public Enumeration getParameterNames() {
-    return request.getParameterNames();
-  }
+    public Map getParameterMap() {
+        return request.getParameterMap();
+    }
 
-  public String[] getParameterValues(String name) {
-    return request.getParameterValues(name);
-  }
+    public Enumeration getParameterNames() {
+        return request.getParameterNames();
+    }
 
-  public String getPathInfo() {
-    return request.getPathInfo();
-  }
+    public String[] getParameterValues(String name) {
+        return request.getParameterValues(name);
+    }
 
-  public String getPathTranslated() {
-    return request.getPathTranslated();
-  }
+    public String getPathInfo() {
+        return request.getPathInfo();
+    }
 
-  public String getProtocol() {
-    return request.getProtocol();
-  }
+    public String getPathTranslated() {
+        return request.getPathTranslated();
+    }
 
-  public String getQueryString() {
-    return request.getQueryString();
-  }
+    public String getProtocol() {
+        return request.getProtocol();
+    }
 
-  public BufferedReader getReader() throws IOException {
-    return request.getReader();
-  }
+    public String getQueryString() {
+        return request.getQueryString();
+    }
 
-  public String getRealPath(String path) {
-    return request.getRealPath(path);
-  }
+    public BufferedReader getReader() throws IOException {
+        return request.getReader();
+    }
 
-  public String getRemoteAddr() {
-    return request.getRemoteAddr();
-  }
+    public String getRealPath(String path) {
+        return request.getRealPath(path);
+    }
 
-  public String getRemoteHost() {
-    return request.getRemoteHost();
-  }
+    public String getRemoteAddr() {
+        return request.getRemoteAddr();
+    }
 
-  public String getRemoteUser() {
-    return request.getRemoteUser();
-  }
+    public String getRemoteHost() {
+        return request.getRemoteHost();
+    }
 
-  public RequestDispatcher getRequestDispatcher(String path) {
-    return request.getRequestDispatcher(path);
-  }
+    public String getRemoteUser() {
+        return request.getRemoteUser();
+    }
 
-  public String getRequestedSessionId() {
-    return request.getRequestedSessionId();
-  }
+    public RequestDispatcher getRequestDispatcher(String path) {
+        return request.getRequestDispatcher(path);
+    }
 
-  public String getRequestURI() {
-    return request.getRequestURI();
-  }
+    public String getRequestedSessionId() {
+        return request.getRequestedSessionId();
+    }
 
-  public StringBuffer getRequestURL() {
-    return request.getRequestURL();
-  }
+    public String getRequestURI() {
+        return request.getRequestURI();
+    }
 
-  public String getScheme() {
-   return request.getScheme();
-  }
+    public StringBuffer getRequestURL() {
+        return request.getRequestURL();
+    }
 
-  public String getServerName() {
-    return request.getServerName();
-  }
+    public String getScheme() {
+        return request.getScheme();
+    }
 
-  public int getServerPort() {
-    return request.getServerPort();
-  }
+    public String getServerName() {
+        return request.getServerName();
+    }
 
-  public HttpSession getSession() {
-    return request.getSession();
-  }
+    public int getServerPort() {
+        return request.getServerPort();
+    }
 
-  public HttpSession getSession(boolean create) {
-    return request.getSession(create);
-  }
+    public HttpSession getSession() {
+        return request.getSession();
+    }
 
-  public String getServletPath() {
-    return request.getServletPath();
-  }
+    public HttpSession getSession(boolean create) {
+        return request.getSession(create);
+    }
 
-  public Principal getUserPrincipal() {
-    return request.getUserPrincipal();
-  }
+    public String getServletPath() {
+        return request.getServletPath();
+    }
 
-  public boolean isRequestedSessionIdFromCookie() {
-    return request.isRequestedSessionIdFromCookie();
-  }
+    public Principal getUserPrincipal() {
+        return request.getUserPrincipal();
+    }
 
-  public boolean isRequestedSessionIdFromUrl() {
-    return request.isRequestedSessionIdFromURL();
-  }
+    public boolean isRequestedSessionIdFromCookie() {
+        return request.isRequestedSessionIdFromCookie();
+    }
 
-  public boolean isRequestedSessionIdFromURL() {
-    return request.isRequestedSessionIdFromURL();
-  }
+    public boolean isRequestedSessionIdFromUrl() {
+        return request.isRequestedSessionIdFromURL();
+    }
 
-  public boolean isRequestedSessionIdValid() {
-    return request.isRequestedSessionIdValid();
-  }
+    public boolean isRequestedSessionIdFromURL() {
+        return request.isRequestedSessionIdFromURL();
+    }
 
-  public boolean isSecure() {
-    return request.isSecure();
-  }
+    public boolean isRequestedSessionIdValid() {
+        return request.isRequestedSessionIdValid();
+    }
 
-  public boolean isUserInRole(String role) {
-    return request.isUserInRole(role);
-  }
+    public boolean isSecure() {
+        return request.isSecure();
+    }
 
-  public void removeAttribute(String attribute) {
-    request.removeAttribute(attribute);
-  }
+    public boolean isUserInRole(String role) {
+        return request.isUserInRole(role);
+    }
 
-  public void setAttribute(String key, Object value) {
-    request.setAttribute(key, value);
-  }
+    public void removeAttribute(String attribute) {
+        request.removeAttribute(attribute);
+    }
 
-  public void setCharacterEncoding(String encoding) throws UnsupportedEncodingException {
-    request.setCharacterEncoding(encoding);
-  }
+    public void setAttribute(String key, Object value) {
+        request.setAttribute(key, value);
+    }
 
-/**
- * TODO 在这里编写被覆盖方法的注释
- */
-@Override
-public int getRemotePort() {
-    return 0;
-}
+    /**
+     * TODO 在这里编写被覆盖方法的注释
+     */
+    @Override
+    public int getRemotePort() {
+        return 0;
+    }
 
-/**
- * TODO 在这里编写被覆盖方法的注释
- */
-@Override
-public String getLocalName() {
-    return null;
-}
+    /**
+     * TODO 在这里编写被覆盖方法的注释
+     */
+    @Override
+    public String getLocalName() {
+        return null;
+    }
 
-/**
- * TODO 在这里编写被覆盖方法的注释
- */
-@Override
-public String getLocalAddr() {
-    return null;
-}
+    /**
+     * TODO 在这里编写被覆盖方法的注释
+     */
+    @Override
+    public String getLocalAddr() {
+        return null;
+    }
 
-/**
- * TODO 在这里编写被覆盖方法的注释
- */
-@Override
-public int getLocalPort() {
-    return 0;
-}
+    /**
+     * TODO 在这里编写被覆盖方法的注释
+     */
+    @Override
+    public int getLocalPort() {
+        return 0;
+    }
 
 }

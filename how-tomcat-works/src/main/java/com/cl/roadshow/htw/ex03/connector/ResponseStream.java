@@ -1,9 +1,10 @@
 package com.cl.roadshow.htw.ex03.connector;
 
 import com.cl.roadshow.htw.ex03.connector.http.HttpResponse;
+
+import javax.servlet.ServletOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import javax.servlet.ServletOutputStream;
 
 /**
  * Convenience implementation of <b>ServletOutputStream</b> that works with
@@ -23,6 +24,36 @@ public class ResponseStream extends ServletOutputStream {
 
 
     /**
+     * Has this stream been closed?
+     */
+    protected boolean closed = false;
+
+
+    // ----------------------------------------------------- Instance Variables
+    /**
+     * Should we commit the response when we are flushed?
+     */
+    protected boolean commit = false;
+    /**
+     * The number of bytes which have already been written to this stream.
+     */
+    protected int count = 0;
+    /**
+     * The content length past which we will not write, or -1 if there is
+     * no defined content length.
+     */
+    protected int length = -1;
+    /**
+     * The Response with which this input stream is associated.
+     */
+    protected HttpResponse response = null;
+    /**
+     * The underlying output stream to which we should write data.
+     */
+    protected OutputStream stream = null;
+
+
+    /**
      * Construct a servlet output stream associated with the specified Request.
      *
      * @param response The associated response
@@ -34,53 +65,12 @@ public class ResponseStream extends ServletOutputStream {
         commit = false;
         count = 0;
         this.response = response;
-      //  this.stream = response.getStream();
+        //  this.stream = response.getStream();
 
     }
 
 
-    // ----------------------------------------------------- Instance Variables
-
-
-    /**
-     * Has this stream been closed?
-     */
-    protected boolean closed = false;
-
-
-    /**
-     * Should we commit the response when we are flushed?
-     */
-    protected boolean commit = false;
-
-
-    /**
-     * The number of bytes which have already been written to this stream.
-     */
-    protected int count = 0;
-
-
-    /**
-     * The content length past which we will not write, or -1 if there is
-     * no defined content length.
-     */
-    protected int length = -1;
-
-
-    /**
-     * The Response with which this input stream is associated.
-     */
-    protected HttpResponse response = null;
-
-
-    /**
-     * The underlying output stream to which we should write data.
-     */
-    protected OutputStream stream = null;
-
-
     // ------------------------------------------------------------- Properties
-
 
     /**
      * [Package Private] Return the "commit response on flush" flag.
@@ -123,10 +113,10 @@ public class ResponseStream extends ServletOutputStream {
      * Flush any buffered data for this output stream, which also causes the
      * response to be committed.
      */
-  public void flush() throws IOException {
-    if (closed)
+    public void flush() throws IOException {
+        if (closed)
             throw new IOException("responseStream.flush.closed");
-       if (commit)
+        if (commit)
             response.flushBuffer();
 
     }
@@ -136,8 +126,7 @@ public class ResponseStream extends ServletOutputStream {
      * Write the specified byte to our output stream.
      *
      * @param b The byte to be written
-     *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public void write(int b) throws IOException {
 
@@ -153,13 +142,13 @@ public class ResponseStream extends ServletOutputStream {
     }
 
 
-    public void write(byte b[]) throws IOException {
+    public void write(byte[] b) throws IOException {
         write(b, 0, b.length);
 
     }
 
 
-    public void write(byte b[], int off, int len) throws IOException {
+    public void write(byte[] b, int off, int len) throws IOException {
         if (closed)
             throw new IOException("responseStream.write.closed");
 

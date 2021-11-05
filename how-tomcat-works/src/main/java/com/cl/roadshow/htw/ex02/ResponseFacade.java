@@ -1,84 +1,84 @@
 package com.cl.roadshow.htw.ex02;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.ServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Locale;
 
-import javax.servlet.ServletResponse;
-import javax.servlet.ServletOutputStream;
-
 public class ResponseFacade implements ServletResponse {
 
-  private ServletResponse response;
-  public ResponseFacade(Response response) {
-    this.response = response;
-  }
+    private final ServletResponse response;
 
-  public void flushBuffer() throws IOException {
-    response.flushBuffer();
-  }
+    public ResponseFacade(Response response) {
+        this.response = response;
+    }
 
-  public int getBufferSize() {
-    return response.getBufferSize();
-  }
+    public void flushBuffer() throws IOException {
+        response.flushBuffer();
+    }
 
-  public String getCharacterEncoding() {
-    return response.getCharacterEncoding();
-  }
+    public int getBufferSize() {
+        return response.getBufferSize();
+    }
 
-  public Locale getLocale() {
-    return response.getLocale();
-  }
+    public void setBufferSize(int size) {
+        response.setBufferSize(size);
+    }
 
-  public ServletOutputStream getOutputStream() throws IOException {
-    return response.getOutputStream();
-  }
+    public String getCharacterEncoding() {
+        return response.getCharacterEncoding();
+    }
 
-  public PrintWriter getWriter() throws IOException {
-    return response.getWriter();
-  }
+    /**
+     * TODO 在这里编写被覆盖方法的注释
+     */
+    @Override
+    public void setCharacterEncoding(String charset) {
+    }
 
-  public boolean isCommitted() {
-    return response.isCommitted();
-  }
+    public Locale getLocale() {
+        return response.getLocale();
+    }
 
-  public void reset() {
-    response.reset();
-  }
+    public void setLocale(Locale locale) {
+        response.setLocale(locale);
+    }
 
-  public void resetBuffer() {
-    response.resetBuffer();
-  }
+    public ServletOutputStream getOutputStream() throws IOException {
+        return response.getOutputStream();
+    }
 
-  public void setBufferSize(int size) {
-    response.setBufferSize(size);
-  }
+    public PrintWriter getWriter() throws IOException {
+        return response.getWriter();
+    }
 
-  public void setContentLength(int length) {
-    response.setContentLength(length);
-  }
+    public boolean isCommitted() {
+        return response.isCommitted();
+    }
 
-  public void setContentType(String type) {
-    response.setContentType(type);
-  }
+    public void reset() {
+        response.reset();
+    }
 
-  public void setLocale(Locale locale) {
-    response.setLocale(locale);
-  }
+    public void resetBuffer() {
+        response.resetBuffer();
+    }
 
-/**
- * TODO 在这里编写被覆盖方法的注释
- */
-@Override
-public String getContentType() {
-    return null;
-}
+    public void setContentLength(int length) {
+        response.setContentLength(length);
+    }
 
-/**
- * TODO 在这里编写被覆盖方法的注释
- */
-@Override
-public void setCharacterEncoding(String charset) {
-}
+    /**
+     * TODO 在这里编写被覆盖方法的注释
+     */
+    @Override
+    public String getContentType() {
+        return null;
+    }
+
+    public void setContentType(String type) {
+        response.setContentType(type);
+    }
 
 }

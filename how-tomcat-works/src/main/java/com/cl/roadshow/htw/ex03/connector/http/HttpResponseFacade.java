@@ -1,152 +1,154 @@
 package com.cl.roadshow.htw.ex03.connector.http;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Locale;
 
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
-
 public class HttpResponseFacade implements HttpServletResponse {
-  private HttpServletResponse response;
-  public HttpResponseFacade(HttpResponse response) {
-    this.response = response;
-  }
+    private final HttpServletResponse response;
 
-  /** implementation of HttpServletResponse  */
-  public void addCookie(Cookie cookie) {
-    response.addCookie(cookie);
-  }
+    public HttpResponseFacade(HttpResponse response) {
+        this.response = response;
+    }
 
-  public void addDateHeader(String name, long value) {
-    response.addDateHeader(name, value);
-  }
+    /**
+     * implementation of HttpServletResponse
+     */
+    public void addCookie(Cookie cookie) {
+        response.addCookie(cookie);
+    }
 
-  public void addHeader(String name, String value) {
-    response.addHeader(name, value);
-  }
+    public void addDateHeader(String name, long value) {
+        response.addDateHeader(name, value);
+    }
 
-  public void addIntHeader(String name, int value) {
-    response.addIntHeader(name, value);
-  }
+    public void addHeader(String name, String value) {
+        response.addHeader(name, value);
+    }
 
-  public boolean containsHeader(String name) {
-    return response.containsHeader(name);
-  }
+    public void addIntHeader(String name, int value) {
+        response.addIntHeader(name, value);
+    }
 
-  public String encodeRedirectURL(String url) {
-    return response.encodeRedirectURL(url);
-  }
+    public boolean containsHeader(String name) {
+        return response.containsHeader(name);
+    }
 
-  public String encodeRedirectUrl(String url) {
-    return response.encodeRedirectUrl(url);
-  }
+    public String encodeRedirectURL(String url) {
+        return response.encodeRedirectURL(url);
+    }
 
-  public String encodeUrl(String url) {
-    return response.encodeUrl(url);
-  }
+    public String encodeRedirectUrl(String url) {
+        return response.encodeRedirectUrl(url);
+    }
 
-  public String encodeURL(String url) {
-    return response.encodeURL(url);
-  }
+    public String encodeUrl(String url) {
+        return response.encodeUrl(url);
+    }
 
-  public void flushBuffer() throws IOException {
-     response.flushBuffer();
-  }
+    public String encodeURL(String url) {
+        return response.encodeURL(url);
+    }
 
-  public int getBufferSize() {
-    return response.getBufferSize();
-  }
+    public void flushBuffer() throws IOException {
+        response.flushBuffer();
+    }
 
-  public String getCharacterEncoding() {
-    return response.getCharacterEncoding();
-  }
+    public int getBufferSize() {
+        return response.getBufferSize();
+    }
 
-  public Locale getLocale() {
-    return response.getLocale();
-  }
+    public void setBufferSize(int size) {
+        response.setBufferSize(size);
+    }
 
-  public ServletOutputStream getOutputStream() throws IOException {
-    return response.getOutputStream();
-  }
+    public String getCharacterEncoding() {
+        return response.getCharacterEncoding();
+    }
 
-  public PrintWriter getWriter() throws IOException {
-    return response.getWriter();
-  }
+    /**
+     * TODO 在这里编写被覆盖方法的注释
+     */
+    @Override
+    public void setCharacterEncoding(String charset) {
+    }
 
-  public boolean isCommitted() {
-    return response.isCommitted();
-  }
+    public Locale getLocale() {
+        return response.getLocale();
+    }
 
-  public void reset() {
-    response.reset();
-  }
+    public void setLocale(Locale locale) {
+        response.setLocale(locale);
+    }
 
-  public void resetBuffer() {
-    response.resetBuffer();
-  }
+    public ServletOutputStream getOutputStream() throws IOException {
+        return response.getOutputStream();
+    }
 
-  public void sendError(int sc) throws IOException {
-    response.sendError(sc);
-  }
+    public PrintWriter getWriter() throws IOException {
+        return response.getWriter();
+    }
 
-  public void sendError(int sc, String message) throws IOException {
-    response.sendError(sc, message);
-  }
+    public boolean isCommitted() {
+        return response.isCommitted();
+    }
 
-  public void sendRedirect(String location) throws IOException {
-    response.sendRedirect(location);
-  }
+    public void reset() {
+        response.reset();
+    }
 
-  public void setBufferSize(int size) {
-    response.setBufferSize(size);
-  }
+    public void resetBuffer() {
+        response.resetBuffer();
+    }
 
-  public void setContentLength(int length) {
-    response.setContentLength(length);
-  }
+    public void sendError(int sc) throws IOException {
+        response.sendError(sc);
+    }
 
-  public void setContentType(String type) {
-    response.setContentType(type);
-  }
+    public void sendError(int sc, String message) throws IOException {
+        response.sendError(sc, message);
+    }
 
-  public void setDateHeader(String name, long value) {
-    response.setDateHeader(name, value);
-  }
+    public void sendRedirect(String location) throws IOException {
+        response.sendRedirect(location);
+    }
 
-  public void setHeader(String name, String value) {
-    response.setHeader(name, value);
-  }
+    public void setContentLength(int length) {
+        response.setContentLength(length);
+    }
 
-  public void setIntHeader(String name, int value) {
-    response.setIntHeader(name, value);
-  }
+    public void setDateHeader(String name, long value) {
+        response.setDateHeader(name, value);
+    }
 
-  public void setLocale(Locale locale) {
-    response.setLocale(locale);
-  }
+    public void setHeader(String name, String value) {
+        response.setHeader(name, value);
+    }
 
-  public void setStatus(int sc) {
-    response.setStatus(sc);
-  }
+    public void setIntHeader(String name, int value) {
+        response.setIntHeader(name, value);
+    }
 
-  public void setStatus(int sc, String message) {
-    response.setStatus(sc, message);
-  }
+    public void setStatus(int sc) {
+        response.setStatus(sc);
+    }
 
-/**
- * TODO 在这里编写被覆盖方法的注释
- */
-@Override
-public String getContentType() {
-    return null;
-}
+    public void setStatus(int sc, String message) {
+        response.setStatus(sc, message);
+    }
 
-/**
- * TODO 在这里编写被覆盖方法的注释
- */
-@Override
-public void setCharacterEncoding(String charset) {
-}
+    /**
+     * TODO 在这里编写被覆盖方法的注释
+     */
+    @Override
+    public String getContentType() {
+        return null;
+    }
+
+    public void setContentType(String type) {
+        response.setContentType(type);
+    }
 }

@@ -21,15 +21,19 @@ final class HttpHeader {
 
 
     // ----------------------------------------------------------- Constructors
+    public char[] name;
+    public int nameEnd;
+    public char[] value;
 
 
+    // ----------------------------------------------------- Instance Variables
+    public int valueEnd;
+    protected int hashCode = 0;
     public HttpHeader() {
 
         this(new char[INITIAL_NAME_SIZE], 0, new char[INITIAL_VALUE_SIZE], 0);
 
     }
-
-
     public HttpHeader(char[] name, int nameEnd, char[] value, int valueEnd) {
 
         this.name = name;
@@ -38,8 +42,6 @@ final class HttpHeader {
         this.valueEnd = valueEnd;
 
     }
-
-
     public HttpHeader(String name, String value) {
 
         this.name = name.toLowerCase().toCharArray();
@@ -50,21 +52,10 @@ final class HttpHeader {
     }
 
 
-    // ----------------------------------------------------- Instance Variables
-
-
-    public char[] name;
-    public int nameEnd;
-    public char[] value;
-    public int valueEnd;
-    protected int hashCode = 0;
-
-
     // ------------------------------------------------------------- Properties
 
 
     // --------------------------------------------------------- Public Methods
-
 
     /**
      * Release all object references, and initialize instance variables, in
@@ -95,7 +86,7 @@ final class HttpHeader {
     public boolean equals(char[] buf, int end) {
         if (end != nameEnd)
             return false;
-        for (int i=0; i<end; i++) {
+        for (int i = 0; i < end; i++) {
             if (buf[i] != name[i])
                 return false;
         }
@@ -126,7 +117,7 @@ final class HttpHeader {
     public boolean valueEquals(char[] buf, int end) {
         if (end != valueEnd)
             return false;
-        for (int i=0; i<end; i++) {
+        for (int i = 0; i < end; i++) {
             if (buf[i] != value[i])
                 return false;
         }
@@ -165,7 +156,7 @@ final class HttpHeader {
             for (int i = 0; i < end; i++) {
                 if (value[i + pos] != buf[i])
                     break;
-                if (i == (end-1))
+                if (i == (end - 1))
                     return true;
             }
             pos++;
@@ -186,7 +177,7 @@ final class HttpHeader {
      * Returns the index of a character in the value.
      */
     public int valueIndexOf(char c, int start) {
-        for (int i=start; i<valueEnd; i++) {
+        for (int i = start; i < valueEnd; i++) {
             if (value[i] == c)
                 return i;
         }
@@ -209,7 +200,7 @@ final class HttpHeader {
      */
     public boolean headerEquals(HttpHeader header) {
         return (equals(header.name, header.nameEnd))
-            && (valueEquals(header.value, header.valueEnd));
+                && (valueEquals(header.value, header.valueEnd));
     }
 
 
@@ -224,10 +215,10 @@ final class HttpHeader {
         int h = hashCode;
         if (h == 0) {
             int off = 0;
-            char val[] = name;
+            char[] val = name;
             int len = nameEnd;
             for (int i = 0; i < len; i++)
-                h = 31*h + val[off++];
+                h = 31 * h + val[off++];
             hashCode = h;
         }
         return h;

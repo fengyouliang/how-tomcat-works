@@ -1,156 +1,155 @@
 package com.cl.roadshow.htw.ex02;
 
-import java.io.IOException;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletInputStream;
+import javax.servlet.ServletRequest;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Enumeration;
 import java.util.Locale;
 import java.util.Map;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletInputStream;
-import javax.servlet.ServletRequest;
-
 public class RequestFacade implements ServletRequest {
 
-  private ServletRequest request = null;
+    private ServletRequest request = null;
 
-  public RequestFacade(Request request) {
-    this.request = request;
-  }
+    public RequestFacade(Request request) {
+        this.request = request;
+    }
 
-  /* implementation of the ServletRequest*/
-  public Object getAttribute(String attribute) {
-    return request.getAttribute(attribute);
-  }
+    /* implementation of the ServletRequest*/
+    public Object getAttribute(String attribute) {
+        return request.getAttribute(attribute);
+    }
 
-  public Enumeration getAttributeNames() {
-    return request.getAttributeNames();
-  }
+    public Enumeration getAttributeNames() {
+        return request.getAttributeNames();
+    }
 
-  public String getRealPath(String path) {
-    return request.getRealPath(path);
-  }
+    public String getRealPath(String path) {
+        return request.getRealPath(path);
+    }
 
-  public RequestDispatcher getRequestDispatcher(String path) {
-    return request.getRequestDispatcher(path);
-  }
+    public RequestDispatcher getRequestDispatcher(String path) {
+        return request.getRequestDispatcher(path);
+    }
 
-  public boolean isSecure() {
-    return request.isSecure();
-  }
+    public boolean isSecure() {
+        return request.isSecure();
+    }
 
-  public String getCharacterEncoding() {
-    return request.getCharacterEncoding();
-  }
+    public String getCharacterEncoding() {
+        return request.getCharacterEncoding();
+    }
 
-  public int getContentLength() {
-    return request.getContentLength();
-  }
+    public void setCharacterEncoding(String encoding)
+            throws UnsupportedEncodingException {
+        request.setCharacterEncoding(encoding);
+    }
 
-  public String getContentType() {
-    return request.getContentType();
-  }
+    public int getContentLength() {
+        return request.getContentLength();
+    }
 
-  public ServletInputStream getInputStream() throws IOException {
-    return request.getInputStream();
-  }
+    public String getContentType() {
+        return request.getContentType();
+    }
 
-  public Locale getLocale() {
-    return request.getLocale();
-  }
+    public ServletInputStream getInputStream() throws IOException {
+        return request.getInputStream();
+    }
 
-  public Enumeration getLocales() {
-    return request.getLocales();
-  }
+    public Locale getLocale() {
+        return request.getLocale();
+    }
 
-  public String getParameter(String name) {
-    return request.getParameter(name);
-  }
+    public Enumeration getLocales() {
+        return request.getLocales();
+    }
 
-  public Map getParameterMap() {
-    return request.getParameterMap();
-  }
+    public String getParameter(String name) {
+        return request.getParameter(name);
+    }
 
-  public Enumeration getParameterNames() {
-    return request.getParameterNames();
-  }
+    public Map getParameterMap() {
+        return request.getParameterMap();
+    }
 
-  public String[] getParameterValues(String parameter) {
-    return request.getParameterValues(parameter);
-  }
+    public Enumeration getParameterNames() {
+        return request.getParameterNames();
+    }
 
-  public String getProtocol() {
-    return request.getProtocol();
-  }
+    public String[] getParameterValues(String parameter) {
+        return request.getParameterValues(parameter);
+    }
 
-  public BufferedReader getReader() throws IOException {
-    return request.getReader();
-  }
+    public String getProtocol() {
+        return request.getProtocol();
+    }
 
-  public String getRemoteAddr() {
-    return request.getRemoteAddr();
-  }
+    public BufferedReader getReader() throws IOException {
+        return request.getReader();
+    }
 
-  public String getRemoteHost() {
-    return request.getRemoteHost();
-  }
+    public String getRemoteAddr() {
+        return request.getRemoteAddr();
+    }
 
-  public String getScheme() {
-   return request.getScheme();
-  }
+    public String getRemoteHost() {
+        return request.getRemoteHost();
+    }
 
-  public String getServerName() {
-    return request.getServerName();
-  }
+    public String getScheme() {
+        return request.getScheme();
+    }
 
-  public int getServerPort() {
-    return request.getServerPort();
-  }
+    public String getServerName() {
+        return request.getServerName();
+    }
 
-  public void removeAttribute(String attribute) {
-    request.removeAttribute(attribute);
-  }
+    public int getServerPort() {
+        return request.getServerPort();
+    }
 
-  public void setAttribute(String key, Object value) {
-    request.setAttribute(key, value);
-  }
+    public void removeAttribute(String attribute) {
+        request.removeAttribute(attribute);
+    }
 
-  public void setCharacterEncoding(String encoding)
-    throws UnsupportedEncodingException {
-    request.setCharacterEncoding(encoding);
-  }
+    public void setAttribute(String key, Object value) {
+        request.setAttribute(key, value);
+    }
 
-/**
- * TODO 在这里编写被覆盖方法的注释
- */
-@Override
-public int getRemotePort() {
-    return 0;
-}
+    /**
+     * TODO 在这里编写被覆盖方法的注释
+     */
+    @Override
+    public int getRemotePort() {
+        return 0;
+    }
 
-/**
- * TODO 在这里编写被覆盖方法的注释
- */
-@Override
-public String getLocalName() {
-    return null;
-}
+    /**
+     * TODO 在这里编写被覆盖方法的注释
+     */
+    @Override
+    public String getLocalName() {
+        return null;
+    }
 
-/**
- * TODO 在这里编写被覆盖方法的注释
- */
-@Override
-public String getLocalAddr() {
-    return null;
-}
+    /**
+     * TODO 在这里编写被覆盖方法的注释
+     */
+    @Override
+    public String getLocalAddr() {
+        return null;
+    }
 
-/**
- * TODO 在这里编写被覆盖方法的注释
- */
-@Override
-public int getLocalPort() {
-    return 0;
-}
+    /**
+     * TODO 在这里编写被覆盖方法的注释
+     */
+    @Override
+    public int getLocalPort() {
+        return 0;
+    }
 
 }

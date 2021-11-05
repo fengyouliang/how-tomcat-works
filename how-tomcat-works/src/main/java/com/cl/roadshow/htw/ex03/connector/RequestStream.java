@@ -2,10 +2,11 @@ package com.cl.roadshow.htw.ex03.connector;
 
 import com.cl.roadshow.htw.ex03.connector.http.Constants;
 import com.cl.roadshow.htw.ex03.connector.http.HttpRequest;
-import java.io.InputStream;
-import java.io.IOException;
-import javax.servlet.ServletInputStream;
 import org.apache.catalina.util.StringManager;
+
+import javax.servlet.ServletInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 
 /**
@@ -20,10 +21,41 @@ import org.apache.catalina.util.StringManager;
  */
 
 public class RequestStream
-    extends ServletInputStream {
+        extends ServletInputStream {
 
 
     // ----------------------------------------------------------- Constructors
+
+
+    /**
+     * The localized strings for this package.
+     */
+    protected static StringManager sm =
+            StringManager.getManager(Constants.Package);
+
+
+    // ----------------------------------------------------- Instance Variables
+    /**
+     * Has this stream been closed?
+     */
+    protected boolean closed = false;
+
+
+    /**
+     * The number of bytes which have already been returned by this stream.
+     */
+    protected int count = 0;
+
+
+    /**
+     * The content length past which we will not read, or -1 if there is
+     * no defined content length.
+     */
+    protected int length = -1;
+    /**
+     * The underlying input stream from which we should read data.
+     */
+    protected InputStream stream = null;
 
 
     /**
@@ -42,43 +74,7 @@ public class RequestStream
     }
 
 
-    // ----------------------------------------------------- Instance Variables
-
-
-    /**
-     * Has this stream been closed?
-     */
-    protected boolean closed = false;
-
-
-    /**
-     * The number of bytes which have already been returned by this stream.
-     */
-    protected int count = 0;
-
-
-    /**
-     * The content length past which we will not read, or -1 if there is
-     * no defined content length.
-     */
-    protected int length = -1;
-
-
-    /**
-     * The localized strings for this package.
-     */
-    protected static StringManager sm =
-        StringManager.getManager(Constants.Package);
-
-
-    /**
-     * The underlying input stream from which we should read data.
-     */
-    protected InputStream stream = null;
-
-
     // --------------------------------------------------------- Public Methods
-
 
     /**
      * Close this input stream.  No physical level I-O is performed, but
@@ -104,12 +100,11 @@ public class RequestStream
     }
 
 
-
     /**
      * Read and return a single byte from this input stream, or -1 if end of
      * file has been encountered.
      *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
     public int read() throws IOException {
 
@@ -137,10 +132,9 @@ public class RequestStream
      * available, end of file is detected, or an exception is thrown.
      *
      * @param b The buffer into which the data is read
-     *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
-    public int read(byte b[]) throws IOException {
+    public int read(byte[] b) throws IOException {
 
         return (read(b, 0, b.length));
 
@@ -155,14 +149,13 @@ public class RequestStream
      * an integer.  This method blocks until input data is available,
      * end of file is detected, or an exception is thrown.
      *
-     * @param b The buffer into which the data is read
+     * @param b   The buffer into which the data is read
      * @param off The start offset into array <code>b</code> at which
-     *  the data is written
+     *            the data is written
      * @param len The maximum number of bytes to read
-     *
-     * @exception IOException if an input/output error occurs
+     * @throws IOException if an input/output error occurs
      */
-    public int read(byte b[], int off, int len) throws IOException {
+    public int read(byte[] b, int off, int len) throws IOException {
 
         int toRead = len;
         if (length > 0) {
